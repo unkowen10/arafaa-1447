@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1419">
+<title>أدعيتي الخاصة | يوم عرفة 1447هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+<style>
+.my-duas-section { margin-top: 1.5rem; }
+.input-group { display: flex; gap: .6rem; margin-top: 1rem; flex-wrap: wrap; }
+.my-input {
+  flex: 1 1 220px; padding: .8rem 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+  background: var(--bg-elevated); color: var(--text); font-family: 'Tajawal', sans-serif; font-size: 1rem;
+  outline: none; transition: .2s;
+}
+.my-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+textarea.my-input { min-height: 80px; resize: vertical; line-height: 1.7; }
+.my-btn {
+  padding: .8rem 1.4rem; border-radius: 12px; border: none; cursor: pointer;
+  font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 1rem; transition: .2s;
+}
+.my-btn-gold { background: linear-gradient(135deg, var(--gold), #b8960c); color: #1a1500; }
+.my-btn-gold:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.my-btn-outline { background: transparent; border: 1px solid var(--gold); color: var(--gold); }
+.my-btn-outline:hover { background: rgba(212,175,55,0.1); }
+.saved-list { margin-top: 1.2rem; display: flex; flex-direction: column; gap: .7rem; }
+.saved-item {
+  background: var(--bg-elevated); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px;
+  padding: 1rem; display: flex; align-items: center; gap: .8rem; transition: .2s;
+}
+.saved-item:hover { border-color: rgba(212,175,55,0.2); }
+.saved-item .text { flex: 1; line-height: 1.8; font-size: 1.05rem; }
+.saved-item .actions { display: flex; gap: .4rem; }
+.saved-item .actions button {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+  background: transparent; color: var(--text-muted); cursor: pointer; display: grid; place-items: center;
+  font-size: .9rem; transition: .2s;
+}
+.saved-item .actions button:hover { color: var(--gold); border-color: var(--gold); }
+.saved-item .actions button.danger:hover { color: #e74c3c; border-color: #e74c3c; }
+.name-chip {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.25);
+  color: var(--gold-light); padding: .4rem .8rem; border-radius: 999px; font-size: .95rem;
+}
+.name-chip button { background: none; border: none; color: var(--gold); cursor: pointer; font-size: .8rem; padding: 0; width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; }
+.name-chip button:hover { background: rgba(212,175,55,0.15); }
+.empty-msg { text-align: center; color: var(--text-muted); padding: 1.5rem; font-size: .95rem; }
+.check-row { display: flex; align-items: center; gap: .8rem; margin-top: .5rem; }
+.check-row input[type="checkbox"] { appearance: none; width: 22px; height: 22px; border: 2px solid var(--gold); border-radius: 6px; cursor: pointer; position: relative; transition: .2s; flex-shrink: 0; }
+.check-row input[type="checkbox"]:checked { background: var(--gold); }
+.check-row input[type="checkbox"]:checked::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #1a1500; font-weight: 800; font-size: .9rem; }
+.check-row label { cursor: pointer; color: var(--text); }
+.check-row.checked label { text-decoration: line-through; color: var(--text-muted); }
+.date-note { color: var(--text-muted); font-size: .8rem; margin-top: .3rem; }
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">🤲</div>
+      <div class="brand-text"><strong>يوم عرفة</strong><small>أدعيتي الخاصة</small></div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">الرئيسية</a>
+      <a href="schedule.html" class="nav-link">الخطة</a>
+      <a href="duas.html" class="nav-link">الأدعية</a>
+      <a href="my-duas.html" class="nav-link active">أدعيتي</a>
+      <a href="tracker.html" class="nav-link">المتابعة</a>
+      <a href="checklist.html" class="nav-link">التحضير</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero" style="padding:2rem 1rem 1rem">
+    <h1>🤲 أدعيتي الخاصة</h1>
+    <p class="subtitle">اكتب ما يخطر ببالك من أدعية والأسماء التي تريد الدعاء لها · كل شيء يُحفظ في جهازك فقط ولا يُرسل لأي مكان</p>
+  </div>
+
+  <!-- Personal Duas -->
+  <section class="card animate-in my-duas-section">
+    <div class="card-title">✍️ أضف دعاءً خاصاً بك</div>
+    <p style="color:var(--text-muted); font-size:.92rem; margin-bottom:.6rem">اكتب الأدعية التي تهمك: رزق، فرج، شفاء، توفيق، زواج، توبة... أي دعاء يهم قلبك.</p>
+    <div class="input-group">
+      <textarea class="my-input" id="duaInput" placeholder="اكتب دعاءك هنا..." dir="rtl"></textarea>
+    </div>
+    <div class="input-group">
+      <input type="text" class="my-input" id="duaTagInput" placeholder="تصنيف (اختياري): رزق، شفاء، توفيق..." style="flex:0 1 240px">
+      <button class="my-btn my-btn-gold" onclick="addPersonalDua()">➕ أضف الدعاء</button>
+    </div>
+    <div id="personalDuasList" class="saved-list"></div>
+  </section>
+
+  <!-- People to pray for -->
+  <section class="card animate-in my-duas-section" style="animation-delay:.1s">
+    <div class="card-title">👨‍👩‍👧‍👦 من أدعو لهم</div>
+    <p style="color:var(--text-muted); font-size:.92rem; margin-bottom:.6rem">اكتب أسماء من تريد الدعاء لهم: والدين، أهل، أصدقاء، أقارب، أحياءً وأمواتاً.</p>
+    <div class="input-group">
+      <input type="text" class="my-input" id="nameInput" placeholder="اكتب الاسم هنا...">
+      <button class="my-btn my-btn-gold" onclick="addPrayerName()">➕ أضف الاسم</button>
+    </div>
+    <div id="namesList" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:.6rem;"></div>
+    <div id="namesEmpty" class="empty-msg" style="display:none">لم تُضف أي اسم بعد. ابدأ بإضافة اسم والديك ❤️</div>
+  </section>
+
+  <!-- Quick prayer log for today -->
+  <section class="card animate-in my-duas-section" style="animation-delay:.15s">
+    <div class="card-title">📋 قائمة الدعاء لهذا اليوم</div>
+    <p style="color:var(--text-muted); font-size:.92rem; margin-bottom:.6rem">حدد ما دعوت به اليوم ليكون تذكيراً ومحفزاً لك.</p>
+    <div id="quickPrayerLog"></div>
+    <div class="input-group" style="margin-top:1rem">
+      <input type="text" class="my-input" id="quickItemInput" placeholder="اكتب شيئاً تريد التذكير بالدعاء له...">
+      <button class="my-btn my-btn-outline" onclick="addQuickItem()">➕ إضافة</button>
+    </div>
+  </section>
+
+  <!-- Export / print -->
+  <section class="card animate-in my-duas-section" style="animation-delay:.2s">
+    <div class="card-title">🖨️ طباعة أو حفظ</div>
+    <p style="color:var(--text-muted); font-size:.92rem; margin-bottom:.6rem">اطبع قائمتك لتكون أمامك أثناء الدعاء، أو انسخها.</p>
+    <div style="display:flex; gap:.6rem; flex-wrap:wrap">
+      <button class="btn btn-gold" onclick="printMyDuas()">🖨️ طباعة الأدعية والأسماء</button>
+      <button class="btn btn-outline" onclick="copyAllDuas()">📋 نسخ جميع الأدعية</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="main-footer">
+  <p>صُنع بحب 🤍 · اللهم تقبل منا ومن جميع المسلمين · يوم عرفة 1447هـ</p>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+(function(){
+  'use strict';
+  const PREFIX = 'arafah1447_';
+
+  // ===== Personal Duas =====
+  function getPersonalDuas() {
+    try { return JSON.parse(localStorage.getItem(PREFIX + 'personal_duas') || '[]'); } catch(e){ return []; }
+  }
+  function savePersonalDuas(list) {
+    localStorage.setItem(PREFIX + 'personal_duas', JSON.stringify(list));
+  }
+  window.addPersonalDua = function(){
+    const text = document.getElementById('duaInput').value.trim();
+    const tag = document.getElementById('duaTagInput').value.trim();
+    if (!text) return alert('اكتب الدعاء أولاً');
+    const list = getPersonalDuas();
+    list.unshift({ id: Date.now(), text, tag, date: new Date().toLocaleDateString('ar-EG'), prayed: false });
+    savePersonalDuas(list);
+    document.getElementById('duaInput').value = '';
+    document.getElementById('duaTagInput').value = '';
+    renderPersonalDuas();
+  };
+  window.deletePersonalDua = function(id){
+    if (!confirm('هل تريد حذف هذا الدعاء؟')) return;
+    savePersonalDuas(getPersonalDuas().filter(d => d.id !== id));
+    renderPersonalDuas();
+  };
+  window.editPersonalDua = function(id){
+    const list = getPersonalDuas();
+    const item = list.find(d => d.id === id);
+    if (!item) return;
+    const newText = prompt('تعديل الدعاء:', item.text);
+    if (newText === null) return;
+    const newTag = prompt('تعديل التصنيف (اتركه فارغاً إن لم ترد):', item.tag || '');
+    if (newText.trim()) { item.text = newText.trim(); item.tag = (newTag||'').trim(); }
+    savePersonalDuas(list);
+    renderPersonalDuas();
+  };
+  window.toggleDuaPrayed = function(id){
+    const list = getPersonalDuas();
+    const item = list.find(d => d.id === id);
+    if (item) { item.prayed = !item.prayed; savePersonalDuas(list); renderPersonalDuas(); }
+  };
+  window.copyPersonalDua = function(text){
+    navigator.clipboard.writeText(text).then(()=>alert('✓ تم النسخ')).catch(()=>alert('لم يتمكن من النسخ'));
+  };
+  function renderPersonalDuas(){
+    const list = getPersonalDuas();
+    const container = document.getElementById('personalDuasList');
+    if (!container) return;
+    if (!list.length) { container.innerHTML = '<div class="empty-msg">لم تُضف أي دعاء بعد. اكتب ما يهم قلبك ❤️</div>'; return; }
+    container.innerHTML = list.map(d => `
+      <div class="saved-item">
+        <div style="flex-shrink:0">
+          <input type="checkbox" ${d.prayed ? 'checked' : ''} onchange="toggleDuaPrayed(${d.id})" style="width:20px;height:20px;accent-color:var(--gold)">
+        </div>
+        <div class="text" style="${d.prayed ? 'text-decoration:line-through; opacity:.6' : ''}">
+          ${d.tag ? `<span style="display:inline-block;padding:.15rem .5rem;border-radius:999px;background:rgba(45,106,79,0.25);color:var(--green-light);font-size:.78rem;margin-bottom:.35rem">${d.tag}</span><br>` : ''}
+          ${d.text}
+          <div class="date-note">${d.date || ''}</div>
+        </div>
+        <div class="actions">
+          <button title="نسخ" onclick="copyPersonalDua('${d.text.replace(/'/g, "\\'")}')">📋</button>
+          <button title="تعديل" onclick="editPersonalDua(${d.id})">✏️</button>
+          <button class="danger" title="حذف" onclick="deletePersonalDua(${d.id})">🗑️</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ===== Names to pray for =====
+  function getPrayerNames() {
+    try { return JSON.parse(localStorage.getItem(PREFIX + 'prayer_names') || '[]'); } catch(e){ return []; }
+  }
+  function savePrayerNames(list) {
+    localStorage.setItem(PREFIX + 'prayer_names', JSON.stringify(list));
+  }
+  window.addPrayerName = function(){
+    const name = document.getElementById('nameInput').value.trim();
+    if (!name) return;
+    const list = getPrayerNames();
+    if (!list.includes(name)) { list.push(name); savePrayerNames(list); }
+    document.getElementById('nameInput').value = '';
+    renderNames();
+  };
+  window.removePrayerName = function(name){
+    savePrayerNames(getPrayerNames().filter(n => n !== name));
+    renderNames();
+  };
+  function renderNames(){
+    const list = getPrayerNames();
+    const container = document.getElementById('namesList');
+    const empty = document.getElementById('namesEmpty');
+    if (!container) return;
+    if (!list.length) { container.innerHTML = ''; if(empty) empty.style.display = 'block'; return; }
+    if(empty) empty.style.display = 'none';
+    container.innerHTML = list.map(n => `
+      <div class="name-chip">${n} <button onclick="removePrayerName('${n.replace(/'/g, "\\'")}')">×</button></div>
+    `).join('');
+  }
+
+  // ===== Quick Prayer Log =====
+  function getQuickItems() {
+    try { return JSON.parse(localStorage.getItem(PREFIX + 'quick_items') || '[]'); } catch(e){ return []; }
+  }
+  function saveQuickItems(list) {
+    localStorage.setItem(PREFIX + 'quick_items', JSON.stringify(list));
+  }
+  window.addQuickItem = function(){
+    const text = document.getElementById('quickItemInput').value.trim();
+    if (!text) return;
+    const list = getQuickItems();
+    list.push({ id: Date.now(), text, done: false });
+    saveQuickItems(list);
+    document.getElementById('quickItemInput').value = '';
+    renderQuickItems();
+  };
+  window.toggleQuickItem = function(id){
+    const list = getQuickItems();
+    const item = list.find(i => i.id === id);
+    if (item) { item.done = !item.done; saveQuickItems(list); renderQuickItems(); }
+  };
+  window.deleteQuickItem = function(id){
+    saveQuickItems(getQuickItems().filter(i => i.id !== id));
+    renderQuickItems();
+  };
+  function renderQuickItems(){
+    const list = getQuickItems();
+    const container = document.getElementById('quickPrayerLog');
+    if (!container) return;
+    if (!list.length) { container.innerHTML = '<div class="empty-msg">أضف تذكيرات للدعاء لهذا اليوم</div>'; return; }
+    container.innerHTML = list.map(i => `
+      <div class="check-row ${i.done ? 'checked' : ''}">
+        <input type="checkbox" id="qi_${i.id}" ${i.done ? 'checked' : ''} onchange="toggleQuickItem(${i.id})">
+        <label for="qi_${i.id}">${i.text}</label>
+        <button class="btn btn-outline" style="margin-right:auto; padding:.3rem .7rem; font-size:.8rem" onclick="deleteQuickItem(${i.id})">حذف</button>
+      </div>
+    `).join('');
+  }
+
+  // ===== Export / Print =====
+  window.printMyDuas = function(){
+    const duas = getPersonalDuas();
+    const names = getPrayerNames();
+    const quick = getQuickItems();
+    let html = `
+    <html dir="rtl"><head><meta charset="UTF-8"><title>أدعيتي - يوم عرفة</title>
+    <style>body{font-family:'Tajawal',sans-serif; padding:2rem; line-height:1.8} h2{color:#b8960c} .item{border-bottom:1px solid #eee; padding:.6rem 0} .tag{font-size:.8rem; color:#2d6a4f} .names{display:flex; gap:.5rem; flex-wrap:wrap} .chip{background:#f3e5ab; padding:.3rem .7rem; border-radius:999px; font-size:.9rem}</style>
+    </head><body>
+    <h1>🤲 أدعيتي الخاصة - يوم عرفة 1447هـ</h1>
+    <h2>📿 الأدعية الخاصة (${duas.length})</h2>
+    ${duas.length ? duas.map(d => `<div class="item">${d.tag ? `<span class="tag">[${d.tag}]</span> ` : ''}${d.text}</div>`).join('') : '<p>لا توجد أدعية مسجلة</p>'}
+    <h2>👨‍👩‍👧‍👦 من أدعو لهم (${names.length})</h2>
+    <div class="names">${names.length ? names.map(n => `<span class="chip">${n}</span>`).join('') : '<p>لا توجد أسماء مسجلة</p>'}</div>
+    <h2>📋 تذكيرات اليوم (${quick.length})</h2>
+    ${quick.length ? quick.map(q => `<div class="item">${q.done ? '✓' : '○'} ${q.text}</div>`).join('') : '<p>لا توجد تذكيرات</p>'}
+    </body></html>`;
+    const w = window.open('', '_blank');
+    w.document.write(html); w.document.close(); w.print();
+  };
+  window.copyAllDuas = function(){
+    const duas = getPersonalDuas().map(d => d.text).join('\n\n');
+    if (!duas) return alert('لا توجد أدعية لنسخها');
+    navigator.clipboard.writeText(duas).then(()=>alert('✓ تم نسخ ' + getPersonalDuas().length + ' دعاءً'));
+  };
+
+  // Init
+  renderPersonalDuas();
+  renderNames();
+  renderQuickItems();
+
+  // Enter key handlers
+  document.addEventListener('DOMContentLoaded', function(){
+    const duaInput = document.getElementById('duaInput');
+    const nameInput = document.getElementById('nameInput');
+    const quickInput = document.getElementById('quickItemInput');
+    if (duaInput) duaInput.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addPersonalDua(); } });
+    if (nameInput) nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addPrayerName(); } });
+    if (quickInput) quickInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addQuickItem(); } });
+  });
+})();
+</script>
+</body>
+</html>

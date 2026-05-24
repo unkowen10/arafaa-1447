@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1419">
+<title>قائمة التحضير | يوم عرفة 1447هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">✅</div>
+      <div class="brand-text"><strong>يوم عرفة</strong><small>قائمة التحضير</small></div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">الرئيسية</a>
+      <a href="schedule.html" class="nav-link">الخطة</a>
+      <a href="duas.html" class="nav-link">الأدعية</a>
+      <a href="my-duas.html" class="nav-link">أدعيتي</a>
+      <a href="tracker.html" class="nav-link">المتابعة</a>
+      <a href="checklist.html" class="nav-link active">التحضير</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero" style="padding:2rem 1rem 1rem">
+    <h1>✅ قائمة مراجعة نهائية</h1>
+    <p class="subtitle">جهّزها الليلة قبل عرفة · اطبعها وعلّقها أمامك</p>
+  </div>
+
+  <div class="grid-2">
+    <section class="card animate-in">
+      <div class="card-title">📱 في الجوال</div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck1"><span>تطبيق القرآن (بدون نت)</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck2"><span>تطبيق الأذكار (حصن المسلم)</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck3"><span>قائمة أدعية (ملف نصي)</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck4"><span>منبه للصلاة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck5"><span>إغلاق إشعارات التواصل الاجتماعي</span></div>
+    </section>
+
+    <section class="card animate-in" style="animation-delay:.05s">
+      <div class="card-title">📚 الكتب والأدوات</div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck6"><span>المصحف الورقي نظيف</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck7"><span>كتاب الأذكار (حصن المسلم)</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck8"><span>دفتر وقلم للأدعية الخاصة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck9"><span>ورقة بأسماء من تدعو لهم</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck10"><span>طباعة الخطة والجدول الزمني</span></div>
+    </section>
+
+    <section class="card animate-in" style="animation-delay:.1s">
+      <div class="card-title">🏠 في البيت</div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck11"><span>سجادة صلاة نظيفة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck12"><span>مكان هادئ للعبادة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck13"><span>ماء بارد في التلاجة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck14"><span>تمر للإفطار (تمر عجوة)</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck15"><span>طعام محضر مسبقاً</span></div>
+    </section>
+
+    <section class="card animate-in" style="animation-delay:.15s; border:2px solid var(--gold)">
+      <div class="card-title">❤️ في القلب</div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck16"><span>نية صادقة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck17"><span>عزيمة قوية</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck18"><span>يقين بالإجابة</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck19"><span>خشوع وخضوع</span></div>
+      <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="ck20"><span>حب لله ورسوله</span></div>
+    </section>
+  </div>
+
+  <section class="card animate-in" style="animation-delay:.2s">
+    <div class="card-title">🌙 ليلة عرفة (ليلة 9 ذي الحجة)</div>
+    <ul style="padding-right:1.2rem; line-height:2; color:var(--text)">
+      <li>المغرب: صلاة + دعاء خفيف</li>
+      <li>العشاء: صلاة + تراويح (إن كنت متعوداً)</li>
+      <li>9:00 م: قيام ليل مبكر (ركعتان)</li>
+      <li>10:00 م: النوم المبكر <strong>مهم جداً!</strong></li>
+      <li>استيقاظ السحور: طعام خفيف + إفطار مبكر + صلاة قيام + دعاء</li>
+    </ul>
+  </section>
+
+  <section class="card animate-in" style="animation-delay:.25s">
+    <div class="card-title">📋 صباح يوم عرفة</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m1"><span>استيقظت قبل الفجر</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m2"><span>صليت سنة الفجر والفجر في وقتها</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m3"><span>قرأت أذكار الصباح كاملة</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m4"><span>أفطرت إفطاراً خفيفاً (تمر + ماء)</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m5"><span>بدأت قراءة القرآن</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="m6"><span>حضّرت نفسياً للوقت الذهبي</span></div>
+  </section>
+
+  <section class="card animate-in" style="animation-delay:.3s">
+    <div class="card-title">⏰ من العصر للمغرب (أهم وقت)</div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e1"><span>تفرّغت تماماً للدعاء</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e2"><span>رفعت يديّ طوال الوقت (استراحة قصيرة)</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e3"><span>بكيت أو تباكيت</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e4"><span>دعوت لكل ما أريد باسمائهم</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e5"><span>ألححت في الدعاء ولم أستعجل</span></div>
+    <div class="checklist-item" onclick="toggleCheck(this)"><input type="checkbox" data-id="e6"><span>استحضرت عظمة الموقف</span></div>
+  </section>
+
+  <div class="text-center mt-2 animate-in" style="animation-delay:.35s">
+    <button class="btn btn-gold" onclick="window.print()">🖨️ طباعة هذه الصفحة</button>
+  </div>
+
+</main>
+
+<footer class="main-footer">
+  <p>صُنع بحب 🤍 · اللهم تقبل منا ومن جميع المسلمين</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
