@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1419">
+<title>ما هو هذا الموقع؟ | يوم عرفة 1447هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e14; --bg-card: #161b22; --bg-elevated: #1e242c;
+  --gold: #d4af37; --gold-light: #f3e5ab; --green: #2d6a4f;
+  --text: #e6e6e6; --text-muted: #a0a0a0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); direction: rtl; }
+body::before {
+  content: ''; position: fixed; inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(212,175,55,0.07) 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, rgba(45,106,79,0.1) 0%, transparent 40%);
+  pointer-events: none; z-index: 0;
+}
+.wrap { position: relative; z-index: 1; min-height: 100vh; padding: 2rem 1.2rem; max-width: 900px; margin: 0 auto; }
+.top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+.brand { display: flex; align-items: center; gap: .6rem; font-family: 'Reem Kufi', sans-serif; }
+.brand-icon { width: 40px; height: 40px; border: 2px solid var(--gold); border-radius: 50%; display: grid; place-items: center; color: var(--gold); font-size: 1.3rem; }
+.brand small { display: block; color: var(--text-muted); font-size: .7rem; }
+.skip-link { color: var(--gold); text-decoration: none; font-size: .9rem; border: 1px solid rgba(212,175,55,0.3); padding: .4rem .9rem; border-radius: 999px; transition: .2s; }
+.skip-link:hover { background: rgba(212,175,55,0.12); }
+.hero { text-align: center; margin-bottom: 3rem; }
+.hero h1 { font-family: 'Reem Kufi', sans-serif; font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--gold-light); margin-bottom: .6rem; }
+.hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.8; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .85rem 2rem; border-radius: 999px; border: 2px solid var(--gold);
+  background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.05));
+  color: var(--gold-light); font-family: 'Tajawal', sans-serif; font-size: 1.1rem; font-weight: 700;
+  text-decoration: none; transition: .25s;
+}
+.cta-btn:hover { background: var(--gold); color: #0a0e14; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212,175,55,0.2); }
+.section-title { font-family: 'Reem Kufi', sans-serif; font-size: 1.4rem; color: var(--gold); margin: 2.5rem 0 1.2rem; text-align: center; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.feat-card {
+  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px;
+  padding: 1.4rem; transition: .25s; position: relative; overflow: hidden;
+}
+.feat-card:hover { transform: translateY(-4px); border-color: rgba(212,175,55,0.25); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+.feat-icon { font-size: 2rem; margin-bottom: .6rem; display: block; }
+.feat-card h3 { color: var(--gold-light); font-size: 1.1rem; margin-bottom: .4rem; font-family: 'Reem Kufi', sans-serif; }
+.feat-card p { color: var(--text-muted); font-size: .92rem; line-height: 1.7; }
+.feat-tag { display: inline-block; padding: .2rem .55rem; border-radius: 999px; font-size: .72rem; font-weight: 700; margin-top: .6rem; background: rgba(45,106,79,0.2); color: var(--green); border: 1px solid rgba(45,106,79,0.3); }
+.highlight-box {
+  border: 2px solid var(--gold); background: rgba(212,175,55,0.06); border-radius: 20px;
+  padding: 1.8rem; text-align: center; margin: 2rem 0;
+}
+.highlight-box h2 { color: var(--gold-light); font-family: 'Reem Kufi', sans-serif; margin-bottom: .8rem; }
+.steps { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1rem; }
+.step { background: var(--bg-elevated); border-radius: 12px; padding: 1rem 1.4rem; min-width: 140px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+.step-num { display: block; font-size: 1.6rem; color: var(--gold); font-weight: 800; margin-bottom: .2rem; }
+.step-label { font-size: .9rem; color: var(--text-muted); }
+.footer { text-align: center; padding: 2rem 0 1rem; color: var(--text-muted); font-size: .85rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 2rem; }
+@media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } .step { min-width: 100px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-bar">
+    <div class="brand">
+      <div class="brand-icon">🕋</div>
+      <div><strong>يوم عرفة</strong><small>1447هـ · 2026م</small></div>
+    </div>
+    <a href="index.html" class="skip-link">تخطي ←</a>
+  </div>
+
+  <div class="hero">
+    <h1>دليلك الشامل ليوم عرفة</h1>
+    <p>موقع متكامل يعمل على الموبايل والكمبيوتر بدون إنترنت، يحتوي على خطة ساعية، 300+ دعاء من القرآن والسنة، عداد أذكار تفاعلي، وكل ما تحتاجه لاستغلال هذا اليوم العظيم.</p>
+    <a href="index.html" class="cta-btn">🚀 دخول الموقع</a>
+  </div>
+
+  <div class="section-title">✨ ما يقدمه الموقع</div>
+  <div class="grid-2">
+    <div class="feat-card">
+      <span class="feat-icon">⏰</span>
+      <h3>عداد تنازلي ليوم عرفة</h3>
+      <p>يعرض الوقت المتبقي بالأيام والساعات والدقائق حتى 9 ذي الحجة 1447هـ (26 مايو 2026).</p>
+      <span class="feat-tag">محدث لحظياً</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🕌</span>
+      <h3>مواقيت الصلاة</h3>
+      <p>مواقيت الفجر والظهر والعصر والمغرب والعشاء محسوبة بتوقيت القاهرة الصيفي (EEST UTC+3).</p>
+      <span class="feat-tag">القاهرة · التوقيت الصيفي</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📋</span>
+      <h3>خطة تفصيلية بالساعات</h3>
+      <p>برنامج كامل من 3:00 صباحاً حتى 10:00 مساءً مقسم بالساعات مع الأعمال المستحبة والأدعية.</p>
+      <span class="feat-tag">قابل للطباعة</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📚</span>
+      <h3>300+ دعاءً من القرآن والسنة</h3>
+      <p>موسوعة شاملة مصنفة: رزق، شفاء، هداية، هموم، والدين، زواج، توبة، نجاة من النار... مع التخريج.</p>
+      <span class="feat-tag">زر نسخ لكل دعاء</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📊</span>
+      <h3>عداد أذكار تفاعلي</h3>
+      <p>عداد رقمي للتهليل والاستغفار والصلاة على النبي ﷺ وأجزاء القرآن. يحفظ تلقائياً في جهازك.</p>
+      <span class="feat-tag">يعمل بدون نت</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🤲</span>
+      <h3>أدعيتي الخاصة</h3>
+      <p>اكتب الأدعية التي تهمك والأسماء التي تريد الدعاء لها. يحفظها الموقع في جهازك ولا تضيع.</p>
+      <span class="feat-tag">خاص بك</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">👨‍👩‍👧‍👦</span>
+      <h3>البرنامج العائلي</h3>
+      <p>كيف تجعل اليوم مميزاً للأسرة؟ نصائح للأطفال، جدول عائلي، وقواعد لمنع الإلهاء.</p>
+      <span class="feat-tag">للجميع</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">✅</span>
+      <h3>قوائم تحضير ومتابعة</h3>
+      <p>قائمة مراجعة كاملة قبل اليوم وخلاله. tick ما تمّ واطبع الجدول للمتابعة الورقية.</p>
+      <span class="feat-tag">محفوظة تلقائياً</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🌟</span>
+      <h3>فضائل وتحفيز</h3>
+      <p>لماذا يوم عرفة عظيم؟ أحاديث، قصص، وكلمات تشعل الهمة لاستغلال كل لحظة.</p>
+      <span class="feat-tag">للتشجيع</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">⚠️</span>
+      <h3>أخطاء شائعة يجب تجنبها</h3>
+      <p>8 أخطاء قاتلة للأجر في هذا اليوم وكيف تتجنبها. خطة طوارئ إذا انشغلت بشيء ضروري.</p>
+      <span class="feat-tag">تجنبها</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📱</span>
+      <h3>يعمل بدون إنترنت</h3>
+      <p>PWA تطبيق ويب يمكن إضافته لشاشة الهاتف الرئيسية ويعمل بالكامل offline.</p>
+      <span class="feat-tag">PWA</span>
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">🖨️</span>
+      <h3>قابل للطباعة</h3>
+      <p>جميع الجداول والخطط والقوائم مصممة للطباعة بشكل نظيف لتعلقها أمامك أثناء اليوم.</p>
+      <span class="feat-tag">طباعة مباشرة</span>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h2>🎯 كيف تستخدم الموقع في 4 خطوات</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">١</span><span class="step-label">اقرأ الفضائل<br>وشحن همتك</span></div>
+      <div class="step"><span class="step-num">٢</span><span class="step-label">جهز أدعيتك<br>وأسماء من تدعو لهم</span></div>
+      <div class="step"><span class="step-num">٣</span><span class="step-label">طبّق الخطة<br>بالساعات</span></div>
+      <div class="step"><span class="step-num">٤</span><span class="step-label">سجّل أعمالك<br>في العداد</span></div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="border-color:var(--green); background:rgba(45,106,79,0.08)">
+    <h2 style="color:#b7e4c7">💡 نصيحة ذهبية</h2>
+    <p style="color:var(--text-muted); max-width:600px; margin:0 auto">
+      أضف الموقع لشاشة هاتفك الرئيسية (Add to Home Screen) لكي يعمل كتطبيق مثل أي App. ولا تنسَ: أفضل وقت للدعاء هو من بعد العصر حتى المغرب!
+    </p>
+  </div>
+
+  <div style="text-align:center; margin:2.5rem 0 1rem">
+    <a href="index.html" class="cta-btn" style="padding:1rem 2.5rem; font-size:1.2rem">🕋 ابدأ الآن - يوم عرفة 1447هـ</a>
+  </div>
+
+  <div class="footer">
+    <p>صُنع بحب 🤍 · اللهم تقبل منا ومن جميع المسلمين · يوم عرفة 1447هـ</p>
+  </div>
+</div>
+</body>
+</html>

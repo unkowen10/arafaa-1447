@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1419">
+<title>عداد المتابعة | يوم عرفة 1447هـ</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">📊</div>
+      <div class="brand-text"><strong>يوم عرفة</strong><small>عداد المتابعة</small></div>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">الرئيسية</a>
+      <a href="schedule.html" class="nav-link">الخطة</a>
+      <a href="duas.html" class="nav-link">الأدعية</a>
+      <a href="my-duas.html" class="nav-link">أدعيتي</a>
+      <a href="tracker.html" class="nav-link active">المتابعة</a>
+      <a href="checklist.html" class="nav-link">التحضير</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero" style="padding:2rem 1rem 1rem">
+    <h1>📊 عداد الأذكار والمتابعة</h1>
+    <p class="subtitle">حدد هدفك واضغط على الزر في كل مرة · يحفظ تلقائياً</p>
+  </div>
+
+  <!-- Counters Grid -->
+  <section class="grid-2" id="counters">
+
+    <div class="card counter-box animate-in">
+      <div style="font-size:2.5rem">📿</div>
+      <div class="counter-value" id="c-tahlil">0</div>
+      <div style="color:var(--text-muted)">التهليل (لا إله إلا الله)</div>
+      <div class="counter-controls">
+        <button class="counter-btn" onclick="inc('tahlil')">+</button>
+        <button class="counter-btn" onclick="resetCounter('tahlil')">↺</button>
+      </div>
+      <div style="margin-top:.5rem">
+        <span class="tag tag-green" id="t-tahlil">الهدف: 1000</span>
+      </div>
+    </div>
+
+    <div class="card counter-box animate-in" style="animation-delay:.05s">
+      <div style="font-size:2.5rem">🌙</div>
+      <div class="counter-value" id="c-salah">0</div>
+      <div style="color:var(--text-muted)">الصلاة على النبي ﷺ</div>
+      <div class="counter-controls">
+        <button class="counter-btn" onclick="inc('salah')">+</button>
+        <button class="counter-btn" onclick="resetCounter('salah')">↺</button>
+      </div>
+      <div style="margin-top:.5rem">
+        <span class="tag tag-green" id="t-salah">الهدف: 500</span>
+      </div>
+    </div>
+
+    <div class="card counter-box animate-in" style="animation-delay:.1s">
+      <div style="font-size:2.5rem">🤲</div>
+      <div class="counter-value" id="c-istighfar">0</div>
+      <div style="color:var(--text-muted)">الاستغفار (أستغفر الله)</div>
+      <div class="counter-controls">
+        <button class="counter-btn" onclick="inc('istighfar')">+</button>
+        <button class="counter-btn" onclick="resetCounter('istighfar')">↺</button>
+      </div>
+      <div style="margin-top:.5rem">
+        <span class="tag tag-green" id="t-istighfar">الهدف: 1000</span>
+      </div>
+    </div>
+
+    <div class="card counter-box animate-in" style="animation-delay:.15s">
+      <div style="font-size:2.5rem">📖</div>
+      <div class="counter-value" id="c-quran">0</div>
+      <div style="color:var(--text-muted)">أجزاء القرآن</div>
+      <div class="counter-controls">
+        <button class="counter-btn" onclick="inc('quran')">+</button>
+        <button class="counter-btn" onclick="dec('quran')">−</button>
+        <button class="counter-btn" onclick="resetCounter('quran')">↺</button>
+      </div>
+      <div style="margin-top:.5rem">
+        <span class="tag tag-green" id="t-quran">الهدف: 30 جزء</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Goals Tracker -->
+  <section class="card animate-in" style="animation-delay:.2s">
+    <div class="card-title">🎯 أهداف اليوم</div>
+    <div class="checklist-item" onclick="toggleGoal(this)">
+      <input type="checkbox" data-id="g1"><span>الذكر: 1000 تهليلة على الأقل</span>
+    </div>
+    <div class="checklist-item" onclick="toggleGoal(this)">
+      <input type="checkbox" data-id="g2"><span>القرآن: ختمة أو حسب الاستطاعة</span>
+    </div>
+    <div class="checklist-item" onclick="toggleGoal(this)">
+      <input type="checkbox" data-id="g3"><span>الصلاة على النبي: 500 مرة</span>
+    </div>
+    <div class="checklist-item" onclick="toggleGoal(this)">
+      <input type="checkbox" data-id="g4"><span>الاستغفار: 1000 مرة</span>
+    </div>
+    <div class="checklist-item" onclick="toggleGoal(this)">
+      <input type="checkbox" data-id="g5"><span>الدعاء: ساعات متواصلة خاصة بعد العصر</span>
+    </div>
+  </section>
+
+  <!-- Print Tracker -->
+  <section class="card animate-in" style="animation-delay:.25s">
+    <div class="card-title">📋 جدول المتابعة للطباعة</div>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr><th>العمل</th><th>100</th><th>200</th><th>300</th><th>500</th><th>1000</th><th>تم ✓</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>التهليل</td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td>الاستغفار</td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td>الصلاة على النبي</td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td>التكبير</td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td><td><input type="checkbox"></td></tr>
+          <tr><td>القرآن (أجزاء)</td><td>1</td><td>5</td><td>10</td><td>15</td><td>30</td><td><input type="checkbox"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-1 text-center">
+      <button class="btn btn-outline" onclick="window.print()">🖨️ طباعة الجدول</button>
+    </div>
+  </section>
+
+  <!-- Expected rewards -->
+  <section class="card animate-in" style="animation-delay:.3s">
+    <div class="card-title">🎁 مكافآت إلهية (ما تتوقعه من الله)</div>
+    <div class="grid-2" style="margin-top:1rem">
+      <div class="card" style="border-left:4px solid var(--gold)">
+        <h3>✨ في الدنيا</h3>
+        <ul style="padding-right:1rem; color:var(--text)">
+          <li>راحة نفسية وطمأنينة</li>
+          <li>انشراح صدر</li>
+          <li>بركة في الرزق والوقت</li>
+          <li>تيسير الأمور</li>
+          <li>قرب من الله</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:4px solid var(--green-light)">
+        <h3>✨ في الآخرة</h3>
+        <ul style="padding-right:1rem; color:var(--text)">
+          <li>مغفرة الذنوب</li>
+          <li>العتق من النار</li>
+          <li>رفع الدرجات</li>
+          <li>حط السيئات</li>
+          <li>استجابة الدعاء</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="main-footer">
+  <p>صُنع بحب 🤍 · اللهم تقبل منا ومن جميع المسلمين</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
