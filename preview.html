@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>معاينة زر التثبيت</title>
+<title>معاينة شريط التثبيت</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,35 +11,56 @@
   <div class="container header-inner">
     <div class="brand">
       <div class="brand-icon">🕋</div>
-      <div class="brand-text"><strong>يوم عرفة</strong><small>معاينة زر التثبيت</small></div>
+      <div class="brand-text"><strong>يوم عرفة</strong><small>معاينة شريط التثبيت العلوي</small></div>
     </div>
   </div>
 </header>
 
 <main class="container">
   <section class="hero">
-    <h1>معاينة زر التثبيت كتطبيق</h1>
-    <p class="subtitle">الزر يظهر تلقائياً في الزاوية السفلى اليسرى</p>
+    <h1>👆 الشريط في أعلى الصفحة</h1>
+    <p class="subtitle">انظر إلى الأعلى — شريط ذهبي ظاهر تلقائياً<br>سيختفي فور الضغط على «تثبيت»</p>
   </section>
 
   <section class="card">
-    <div class="card-title">ℹ️ كيف يعمل؟</div>
+    <div class="card-title">✨ السلوك الجديد</div>
     <ul style="padding-right:1.2rem; line-height:2">
-      <li>الزر <strong>عائم</strong> ويظهر في كل الصفحات.</li>
-      <li>على Chrome/Edge/Android → يفتح نافذة التثبيت الأصلية للمتصفح.</li>
-      <li>على iPhone (Safari) → يعرض تعليمات «أضف إلى الشاشة الرئيسية» بصورة واضحة.</li>
-      <li>لا يختفي حتى يقوم المستخدم بالتثبيت الفعلي.</li>
-      <li>في وضع التطبيق (standalone) لا يظهر أبداً.</li>
+      <li>✅ شريط <strong>ذهبي بعرض الشاشة</strong> في الأعلى — لا يمكن تجاهله</li>
+      <li>✅ يحتوي على رسالة + زر «<strong>تثبيت</strong>» + زر إغلاق (×)</li>
+      <li>✅ عند الضغط على «تثبيت» → <strong>يختفي فوراً</strong> ولا يعود مرة أخرى</li>
+      <li>✅ في وضع التطبيق (standalone) لا يظهر أبداً</li>
+      <li>✅ animation انزلاق من الأعلى عند الظهور والاختفاء</li>
     </ul>
   </section>
 
   <section class="card">
     <div class="card-title">🧪 أزرار اختبار</div>
-    <button class="btn btn-outline" onclick="localStorage.removeItem('arafah1447_pwa_installed'); location.reload()">إعادة إظهار الزر</button>
-    <button class="btn btn-outline" onclick="document.getElementById('pwaInstallBtn')?.click()">فتح النافذة الآن</button>
+    <button class="btn btn-gold" onclick="showInstallButton()">إعادة إظهار الشريط</button>
+    <button class="btn btn-outline" style="margin-top:.6rem" onclick="localStorage.clear(); location.reload()">مسح كل البيانات وإعادة التحميل</button>
+  </section>
+
+  <section class="card">
+    <div class="card-title">📋 معلومات التشخيص</div>
+    <pre id="diag" style="background:#000;color:#0f0;padding:1rem;border-radius:8px;direction:ltr;text-align:left;overflow:auto;font-size:.8rem"></pre>
   </section>
 </main>
 
 <script src="app.js"></script>
+<script>
+  setTimeout(function(){
+    var d = document.getElementById('diag');
+    if (!d) return;
+    var bar = document.getElementById('pwaInstallBar');
+    var info = {
+      'Bar exists': !!bar,
+      'Bar visible': bar ? getComputedStyle(bar).display !== 'none' : 'N/A',
+      'Is standalone': window.matchMedia('(display-mode: standalone)').matches,
+      'iOS standalone': window.navigator.standalone || false,
+      'localStorage installed flag': (function(){ try { return localStorage.getItem('arafah1447_pwa_installed'); } catch(e){ return 'N/A'; } })(),
+      'User Agent': navigator.userAgent.slice(0,120)
+    };
+    d.textContent = JSON.stringify(info, null, 2);
+  }, 500);
+</script>
 </body>
 </html>
