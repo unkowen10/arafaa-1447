@@ -3,7 +3,7 @@
 // كل ما تعمل تحديث ورفع على GitHub، غيّر رقم النسخة CACHE_VERSION
 // الكاش الجديد بيتعمل تلقائياً والقديم بيتمسح والمستخدم بيشوف زر التحديث
 // =========================================================
-const CACHE_VERSION = 'v6-2026-05-25';
+const CACHE_VERSION = 'v7-2026-05-25';
 const CACHE_NAME = 'arafah1447-' + CACHE_VERSION;
 
 const ASSETS = [
