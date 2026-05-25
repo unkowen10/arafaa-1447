@@ -6,7 +6,6 @@
   // 1. Countdown to Arafah
   // =========================
   // Astronomical Arafah for Egypt/Cairo: 26 May 2026 (9 Dhu al-Hijjah 1447)
-  // Countdown to midnight start of that day in Cairo timezone (UTC+3)
   const ARAFAH_START = new Date('2026-05-26T00:00:00+03:00');
 
   function updateCountdown(){
@@ -16,7 +15,7 @@
     const elHours = document.getElementById('cd-hours');
     const elMinutes = document.getElementById('cd-minutes');
     const elSeconds = document.getElementById('cd-seconds');
-    if (!elDays && !elHours) return; // not on this page
+    if (!elDays && !elHours) return;
     if (diff <= 0) {
       if(elDays) elDays.textContent = '0';
       if(elHours) elHours.textContent = '00';
@@ -49,7 +48,6 @@
   const CAIRO_TZ = 'Africa/Cairo';
 
   function formatTimeCairo(date){
-    // Use Intl to format for Cairo timezone
     try {
       return new Intl.DateTimeFormat('en-GB', {
         timeZone: CAIRO_TZ,
@@ -58,7 +56,6 @@
         hour12: false
       }).format(date);
     } catch(e) {
-      // fallback to simple offset +3 (EEST) for May
       const utc = date.getTime() + (date.getTimezoneOffset()*60000);
       const cairo = new Date(utc + (3*60*60*1000));
       return String(cairo.getHours()).padStart(2,'0') + ':' + String(cairo.getMinutes()).padStart(2,'0');
@@ -66,26 +63,19 @@
   }
 
   function getArafahPrayerTimes(){
-    const target = new Date('2026-05-26T12:00:00+03:00'); // noon Cairo time
+    const target = new Date('2026-05-26T12:00:00+03:00');
     if (typeof adhan !== 'undefined' && adhan.CalculationMethod) {
       try {
         const coords = new adhan.Coordinates(CAIRO.lat, CAIRO.lng);
-        // Egyptian General Authority of Survey
         const params = adhan.CalculationMethod.Egyptian();
         const date = new adhan.DateUtils(target);
         const prayers = new adhan.PrayerTimes(coords, date, params);
         return {
-          fajr: prayers.fajr,
-          sunrise: prayers.sunrise,
-          dhuhr: prayers.dhuhr,
-          asr: prayers.asr,
-          maghrib: prayers.maghrib,
-          isha: prayers.isha
+          fajr: prayers.fajr, sunrise: prayers.sunrise, dhuhr: prayers.dhuhr,
+          asr: prayers.asr, maghrib: prayers.maghrib, isha: prayers.isha
         };
       } catch(e) { console.warn('Adhan error', e); }
     }
-    // Fallback static approximate times for Cairo 26 May (EEST)
-    // These are rough estimates based on Cairo summer schedule
     return {
       fajr: new Date('2026-05-26T03:30:00+03:00'),
       sunrise: new Date('2026-05-26T05:00:00+03:00'),
@@ -104,9 +94,7 @@
       fajr: 'الفجر', sunrise: 'الشروق', dhuhr: 'الظهر',
       asr: 'العصر', maghrib: 'المغرب', isha: 'العشاء'
     };
-    // Determine current prayer in Cairo for highlighting
     const now = new Date();
-    // Convert now to Cairo time for comparison
     let currentKey = '';
     try {
       const parts = new Intl.DateTimeFormat('en-GB', {
@@ -119,12 +107,11 @@
         const d = new Date(times[k]);
         mins[k] = (d.getHours()*60 + d.getMinutes());
       }
-      // Find last passed prayer
       const order = ['fajr','sunrise','dhuhr','asr','maghrib','isha'];
       for (let i=order.length-1;i>=0;i--){
         if (cairoNowMin >= mins[order[i]]) { currentKey = order[i]; break; }
       }
-    } catch(e) { /* ignore highlight if fails */ }
+    } catch(e) {}
 
     grid.innerHTML = '';
     for (const key of ['fajr','sunrise','dhuhr','asr','maghrib','isha']){
@@ -159,7 +146,6 @@
     for (const k in COUNTERS){
       const el = document.getElementById('c-'+k);
       if (el) el.textContent = String(COUNTERS[k]);
-      // tag color
       const tag = document.getElementById('t-'+k);
       if (tag){
         const goals = { tahlil:1000, salah:500, istighfar:1000, quran:30 };
@@ -170,24 +156,20 @@
   }
   window.inc = function(key){
     COUNTERS[key] = (COUNTERS[key] || 0) + 1;
-    saveCounters();
-    updateCounterUI();
+    saveCounters(); updateCounterUI();
   };
   window.dec = function(key){
     COUNTERS[key] = Math.max(0, (COUNTERS[key] || 0) - 1);
-    saveCounters();
-    updateCounterUI();
+    saveCounters(); updateCounterUI();
   };
   window.resetCounter = function(key){
     if (confirm('هل تريد تصفير العداد؟')) {
-      COUNTERS[key] = 0;
-      saveCounters();
-      updateCounterUI();
+      COUNTERS[key] = 0; saveCounters(); updateCounterUI();
     }
   };
 
   // =========================
-  // 4. Checklists (localStorage)
+  // 4. Checklists
   // =========================
   function restoreCheckboxes(){
     document.querySelectorAll('input[type="checkbox"]').forEach(ch=>{
@@ -195,7 +177,6 @@
       if (!id) return;
       const v = localStorage.getItem(STORAGE_PREFIX + 'chk_' + id);
       if (v !== null) ch.checked = (v==='1');
-      // visual parent
       const item = ch.closest('.checklist-item');
       if (item) item.classList.toggle('checked', ch.checked);
     });
@@ -213,22 +194,9 @@
     el.classList.toggle('checked', ch.checked);
     saveCheckbox(ch);
   };
-  window.toggleCheck = function(el){
-    const ch = el.querySelector('input[type="checkbox"]');
-    if (!ch) return;
-    ch.checked = !ch.checked;
-    el.classList.toggle('checked', ch.checked);
-    saveCheckbox(ch);
-  };
-  window.toggleGoal = function(el){
-    const ch = el.querySelector('input[type="checkbox"]');
-    if (!ch) return;
-    ch.checked = !ch.checked;
-    el.classList.toggle('checked', ch.checked);
-    saveCheckbox(ch);
-  };
+  window.toggleCheck = window.toggleQuick;
+  window.toggleGoal  = window.toggleQuick;
 
-  // Attach listeners for inline checkboxes too
   document.addEventListener('change', function(e){
     const ch = e.target.closest('input[type="checkbox"]');
     if (ch && (ch.dataset.id || ch.getAttribute('data-id'))){
@@ -262,7 +230,6 @@
       btn.style.color = 'var(--green-light)';
       setTimeout(()=>{ btn.textContent = old; btn.style.borderColor=''; btn.style.color=''; }, 1500);
     }).catch(()=>{
-      // fallback
       const ta = document.createElement('textarea');
       ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
       const old = btn.textContent; btn.textContent='✓ تم النسخ'; setTimeout(()=>btn.textContent=old,1500);
@@ -287,13 +254,192 @@
   }
 
   // =========================
-  // 9. Print checks: keep state in print
+  // 9. ✦ Install PWA Button (زر التثبيت الدائم)
   // =========================
-  document.querySelectorAll('.print-check').forEach(ch=>{
-    ch.addEventListener('change', ()=>{
-      // No localStorage for print-only, but keep visual
+  // الفكرة:
+  // - زر عائم يظهر دائماً في كل الصفحات تلقائياً
+  // - لا يختفي إلا بعد التثبيت الفعلي (display-mode: standalone)
+  //   أو حدث appinstalled (لكروم/أندرويد).
+  // - على Safari/iOS (لا يوجد beforeinstallprompt) يفتح نافذة بتعليمات
+  //   "أضف إلى الشاشة الرئيسية".
+  // - الحالة محفوظة في localStorage احتياطاً.
+
+  let deferredInstallPrompt = null;
+  const INSTALLED_KEY = STORAGE_PREFIX + 'pwa_installed';
+
+  function isStandalone(){
+    return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+        || window.navigator.standalone === true
+        || document.referrer.startsWith('android-app://');
+  }
+
+  function isAlreadyInstalled(){
+    return isStandalone() || localStorage.getItem(INSTALLED_KEY) === '1';
+  }
+
+  function isIOS(){
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  }
+  function isIOSSafari(){
+    const ua = navigator.userAgent;
+    return isIOS() && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+  }
+
+  function buildInstallUI(){
+    // لا نُنشئ الزر إذا كان مثبتاً
+    if (isAlreadyInstalled()) return;
+    if (document.getElementById('pwaInstallBtn')) return;
+
+    // الزر العائم
+    const btn = document.createElement('button');
+    btn.id = 'pwaInstallBtn';
+    btn.className = 'pwa-install-btn';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', 'تثبيت التطبيق');
+    btn.innerHTML = `
+      <span class="pwa-install-icon" aria-hidden="true">⬇</span>
+      <span class="pwa-install-text">ثبّت التطبيق</span>
+    `;
+    btn.addEventListener('click', onInstallClick);
+    document.body.appendChild(btn);
+
+    // النافذة (modal) لتعليمات iOS وكأي fallback
+    const modal = document.createElement('div');
+    modal.id = 'pwaInstallModal';
+    modal.className = 'pwa-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="pwa-modal-backdrop" data-close="1"></div>
+      <div class="pwa-modal-card" role="document">
+        <button class="pwa-modal-close" type="button" aria-label="إغلاق" data-close="1">×</button>
+        <div class="pwa-modal-title">📲 ثبّت التطبيق على جهازك</div>
+        <div class="pwa-modal-body" id="pwaModalBody">
+          <!-- يُحقن بحسب نوع الجهاز -->
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e)=>{
+      if (e.target.dataset.close === '1') closeModal();
     });
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  function openModalForIOS(){
+    const body = document.getElementById('pwaModalBody');
+    if (!body) return;
+    body.innerHTML = `
+      <p>لتثبيت الموقع كتطبيق على شاشتك الرئيسية على <strong>iPhone/iPad</strong> اتّبع الخطوات:</p>
+      <ol class="pwa-steps">
+        <li>اضغط على زر <strong>المشاركة</strong>
+          <span class="pwa-ios-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="M8 8l4-4 4 4"/><path d="M20 16v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4"/></svg>
+          </span>
+          أسفل الشاشة في Safari.
+        </li>
+        <li>اختر «<strong>أضف إلى الشاشة الرئيسية</strong>» (Add to Home Screen).</li>
+        <li>اضغط «<strong>إضافة</strong>» في الأعلى.</li>
+      </ol>
+      <p class="pwa-note">⚠️ يجب استخدام متصفح <strong>Safari</strong> وليس Chrome على iPhone.</p>
+      <button class="btn btn-outline pwa-btn-done" type="button" data-close="1">حسناً، فهمت</button>
+    `;
+    openModal();
+  }
+
+  function openModalForGenericFallback(){
+    const body = document.getElementById('pwaModalBody');
+    if (!body) return;
+    body.innerHTML = `
+      <p>لتثبيت الموقع كتطبيق:</p>
+      <ol class="pwa-steps">
+        <li>افتح قائمة المتصفح <strong>⋮</strong> (الثلاث نقاط).</li>
+        <li>اختر «<strong>تثبيت التطبيق</strong>» أو «<strong>إضافة إلى الشاشة الرئيسية</strong>».</li>
+        <li>أكّد الإضافة.</li>
+      </ol>
+      <p class="pwa-note">إن لم تجد الخيار، تأكد من أنك تستخدم Chrome أو Edge أو متصفحاً يدعم PWA.</p>
+      <button class="btn btn-outline pwa-btn-done" type="button" data-close="1">حسناً</button>
+    `;
+    openModal();
+  }
+
+  function openModal(){
+    const m = document.getElementById('pwaInstallModal');
+    if (!m) return;
+    m.classList.add('open');
+    m.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    const m = document.getElementById('pwaInstallModal');
+    if (!m) return;
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  async function onInstallClick(){
+    // إذا كان لدينا حدث محفوظ (Chrome/Edge/Android) → عرض نافذة النظام مباشرة
+    if (deferredInstallPrompt){
+      try {
+        deferredInstallPrompt.prompt();
+        const choice = await deferredInstallPrompt.userChoice;
+        if (choice && choice.outcome === 'accepted'){
+          markInstalled();
+        }
+        // لا نلغي deferredInstallPrompt حتى لو رفض، حتى يستطيع الضغط مرة ثانية
+        // لكن Chrome يستهلكه مرة واحدة، فنفرّغه:
+        deferredInstallPrompt = null;
+        // لو رفض المستخدم، يبقى الزر ظاهراً (لن نخفيه)
+      } catch(e){
+        console.warn('Install prompt failed', e);
+        openModalForGenericFallback();
+      }
+      return;
+    }
+
+    // لا يوجد حدث: على iOS اعرض شرح Safari, وإلا اعرض fallback
+    if (isIOS()){
+      openModalForIOS();
+    } else {
+      openModalForGenericFallback();
+    }
+  }
+
+  function markInstalled(){
+    localStorage.setItem(INSTALLED_KEY, '1');
+    const btn = document.getElementById('pwaInstallBtn');
+    if (btn) btn.remove();
+    const modal = document.getElementById('pwaInstallModal');
+    if (modal) modal.remove();
+  }
+
+  // التقاط حدث beforeinstallprompt قبل أن يفقده المتصفح
+  window.addEventListener('beforeinstallprompt', (e)=>{
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    // الزر موجود أصلاً، فقط نتأكد من ظهوره
+    if (!document.getElementById('pwaInstallBtn') && !isAlreadyInstalled()){
+      buildInstallUI();
+    }
   });
+
+  // عند التثبيت الفعلي
+  window.addEventListener('appinstalled', ()=>{
+    markInstalled();
+  });
+
+  // لو تم فتح الموقع في وضع تطبيق (standalone) لاحقاً نختفي
+  if (window.matchMedia){
+    try {
+      window.matchMedia('(display-mode: standalone)').addEventListener('change', (e)=>{
+        if (e.matches) markInstalled();
+      });
+    } catch(_){}
+  }
 
   // =========================
   // Init
@@ -305,12 +451,7 @@
     loadCounters();
     restoreCheckboxes();
     setActiveNav();
-
-    // Open first accordion on duas page
-    const firstAcc = document.querySelector('.accordion-header');
-    if (firstAcc && !firstAcc.classList.contains('open')) {
-      // Leave closed by default, user can open
-    }
+    buildInstallUI();
   });
 
 })();
