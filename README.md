@@ -16,29 +16,6 @@
 - 🖨️ **قابل للطباعة**
 - 📴 **يعمل Offline** (PWA)
 
-## 🚀 النشر على GitHub Pages
-
-### الطريقة 1: GitHub CLI (أسهل)
-```bash
-gh auth login
-gh repo create arafah-1447 --public --source=. --push
-gh repo edit arafah-1447 --enable-pages --pages-source-branch=main --pages-source-path=/
-```
-
-### الطريقة 2: يدوياً
-1. أنشئ مستودع جديد على GitHub (public) باسم `arafah-1447`
-2. شغّل الأوامر التالية في المجلد:
-```bash
-git init
-git add .
-git commit -m "Initial: Arafah 1447 guide"
-git remote add origin https://github.com/YOUR_USERNAME/arafah-1447.git
-git branch -M main
-git push -u origin main
-```
-3. اذهب إلى **Settings → Pages** وفعّل Pages من الفرع `main` والمجلد `/(root)`
-4. بعد دقيقة، الموقع متاح على: `https://yourusername.github.io/arafah-1447/`
-
 ## 📄 الترخيص
 مفتوح المصدر - للأجر والنفع العام.
 
