@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معاينة زر التثبيت</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="main-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="brand-icon">🕋</div>
+      <div class="brand-text"><strong>يوم عرفة</strong><small>معاينة زر التثبيت</small></div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>معاينة زر التثبيت كتطبيق</h1>
+    <p class="subtitle">الزر يظهر تلقائياً في الزاوية السفلى اليسرى</p>
+  </section>
+
+  <section class="card">
+    <div class="card-title">ℹ️ كيف يعمل؟</div>
+    <ul style="padding-right:1.2rem; line-height:2">
+      <li>الزر <strong>عائم</strong> ويظهر في كل الصفحات.</li>
+      <li>على Chrome/Edge/Android → يفتح نافذة التثبيت الأصلية للمتصفح.</li>
+      <li>على iPhone (Safari) → يعرض تعليمات «أضف إلى الشاشة الرئيسية» بصورة واضحة.</li>
+      <li>لا يختفي حتى يقوم المستخدم بالتثبيت الفعلي.</li>
+      <li>في وضع التطبيق (standalone) لا يظهر أبداً.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <div class="card-title">🧪 أزرار اختبار</div>
+    <button class="btn btn-outline" onclick="localStorage.removeItem('arafah1447_pwa_installed'); location.reload()">إعادة إظهار الزر</button>
+    <button class="btn btn-outline" onclick="document.getElementById('pwaInstallBtn')?.click()">فتح النافذة الآن</button>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
