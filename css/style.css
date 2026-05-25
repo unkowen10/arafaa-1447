@@ -278,26 +278,56 @@ a:hover { color: var(--gold); }
 .timeline-title { color: var(--text); font-weight: 700; margin-top: .2rem; }
 .timeline-desc { color: var(--text-muted); font-size: .92rem; margin-top: .2rem; }
 
-/* Dua list */
+/* ============================================
+   Dua list  ✦ (تم تحسينه لمنع اقتصاص النص)
+   ============================================ */
 .dua-item {
   background: var(--bg-elevated);
   border-radius: 12px;
   padding: 1.2rem;
   margin-bottom: 1rem;
   border: 1px solid rgba(255,255,255,0.05);
+  /* السماح للمحتوى بالتدفق بحرية */
+  overflow: visible;
+  min-width: 0;
 }
 
 .dua-text {
   font-family: var(--font-quran);
   font-size: 1.15rem;
   color: var(--gold-light);
-  line-height: 1.9;
+  line-height: 2.1;          /* مساحة أكبر لعلامات التشكيل العلوية والسفلية */
   text-align: center;
   margin-bottom: .6rem;
+  /* مهم: السماح بكسر الكلمات الطويلة بدلاً من اقتصاصها */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+  white-space: normal;
+  hyphens: auto;
+  /* منع أي اقتصاص ناتج عن line-clamp قد يأتي من المتصفح */
+  -webkit-line-clamp: unset;
+  display: block;
+  /* إعطاء هامش علوي بسيط حتى لا تُقص علامات التشكيل العلوية */
+  padding: .25rem .25rem .35rem;
+  max-width: 100%;
 }
 
-.dua-info { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
-.dua-tag { font-size: .75rem; background: rgba(45,106,79,0.25); color: var(--green-light); padding: .25rem .6rem; border-radius: 999px; }
+.dua-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.dua-tag {
+  font-size: .75rem;
+  background: rgba(45,106,79,0.25);
+  color: var(--green-light);
+  padding: .25rem .6rem;
+  border-radius: 999px;
+}
 
 /* Buttons */
 .btn {
@@ -425,7 +455,9 @@ a:hover { color: var(--gold); }
 
 .data-table tr:hover { background: rgba(255,255,255,0.02); }
 
-/* Accordion for mobile */
+/* ============================================
+   Accordion ✦ (تم تحسينه - المشكلة الرئيسية)
+   ============================================ */
 .accordion-header {
   cursor: pointer;
   padding: 1rem;
@@ -449,11 +481,19 @@ a:hover { color: var(--gold); }
 .accordion-body {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .4s ease;
+  transition: max-height .5s ease;
   padding: 0 1rem;
 }
 
-.accordion-body.open { max-height: 2000px; padding-bottom: 1rem; }
+/* ✦ الإصلاح الرئيسي:
+   كان max-height: 2000px غير كافٍ على الهواتف لأن النص العربي يلتف
+   على أسطر أكثر فيتعدى هذا الحد ويختفي آخر دعاء.
+   نستخدم قيمة كبيرة جداً + overflow visible عند الفتح */
+.accordion-body.open {
+  max-height: none;       /* ← السماح بأي ارتفاع */
+  overflow: visible;      /* ← منع اقتصاص آخر دعاء */
+  padding-bottom: 1rem;
+}
 
 /* Footer */
 .main-footer {
@@ -484,7 +524,9 @@ a:hover { color: var(--gold); }
 .tag-green { background: rgba(64,145,108,0.15); color: var(--green-light); }
 .tag-red { background: rgba(192,57,43,0.15); color: #e74c3c; }
 
-/* Responsive */
+/* ============================================
+   Responsive ✦ (تحسينات الهاتف)
+   ============================================ */
 @media (max-width: 640px) {
   .main-nav { gap: .3rem; }
   .nav-link { padding: .4rem .6rem; font-size: .8rem; }
@@ -493,6 +535,41 @@ a:hover { color: var(--gold); }
   .timeline { padding-right: 1rem; }
   .prayer-box { padding: .7rem; }
   .prayer-time { font-size: 1.1rem; }
+
+  /* ✦ تقليل الحشوات على الهاتف لإعطاء مساحة أكبر للنص */
+  .container { padding: .8rem; }
+  .card { padding: 1rem; }
+
+  /* ✦ تصغير النص قليلاً + زيادة المسافة بين الأسطر لمنع تداخل التشكيل */
+  .dua-item {
+    padding: 1rem .8rem;
+  }
+  .dua-text {
+    font-size: 1.05rem;
+    line-height: 2.2;
+    padding: .3rem .15rem .4rem;
+  }
+
+  /* ✦ زر النسخ + الوسم لا يتزاحمان على شاشة ضيقة */
+  .dua-info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ✦ ضبط جسم الأكورديون على الهاتف */
+  .accordion-body { padding: 0 .5rem; }
+  .accordion-body.open { padding-bottom: .8rem; }
+}
+
+/* شاشات أصغر (هواتف صغيرة) */
+@media (max-width: 380px) {
+  .dua-text {
+    font-size: 1rem;
+    line-height: 2.3;
+  }
+  .card { padding: .9rem .7rem; }
+  .dua-item { padding: .9rem .7rem; }
 }
 
 /* Print styles */
@@ -500,4 +577,5 @@ a:hover { color: var(--gold); }
   body { background: #fff; color: #000; }
   .main-header, .main-footer, .counter-controls, .btn { display: none !important; }
   .card { border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
+  .accordion-body { max-height: none !important; overflow: visible !important; }
 }
